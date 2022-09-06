@@ -24,12 +24,33 @@ function whoIsLonger(params) {
 whoIsLonger(hacker1, hacker2);
 
 // Iteration 3: Loops
+// version 1
 const splittedHacker1 = hacker1.toUpperCase().split("").join(" ");
 console.log(splittedHacker1);
 
+// version 2
+let result = "";
+for (let i = 0; i < hacker1.length; i++) {
+  if (i === hacker1.length - 1) {
+    result += hacker1[i].toUpperCase();
+  } else {
+    result += hacker1[i].toUpperCase() + " ";
+  }
+}
+console.log("version 2:", result);
+
+//version 1
 const revertedHacker2 = hacker2.split("").reverse().join("");
 console.log(revertedHacker2);
 
+// version 2
+let result2 = "";
+for (let i = hacker2.length - 1; i >= 0; i--) {
+  result2 += hacker2[i];
+}
+console.log("version 2:", result2);
+
+// version 1
 function lexiOrder(params) {
   if (hacker1[0] < hacker2[0]) {
     return console.log(`The driver's name goes first.`);
@@ -40,6 +61,15 @@ function lexiOrder(params) {
   }
 }
 lexiOrder(hacker1, hacker2);
+
+//version 2
+if (hacker1.localeCompare(hacker2) < hacker2.localeCompare(hacker1)) {
+  console.log(`The driver's name goes first`);
+} else if (hacker1.localeCompare(hacker2) > hacker2.localeCompare(hacker1)) {
+  console.log(`Yo, the navigator goes first definitely.`);
+} else {
+  console.log(`What?! You both have the same name?`);
+}
 
 // Bonus 1
 let lorem =
@@ -64,6 +94,7 @@ wordLatin(numberOfWords);
 // Bonus 2
 const phraseToCheck = "A man, a plan, a canal, Panama!";
 
+// version 1
 function palindrome(params) {
   let reg = /[\W_]/g;
   let result = params.toLowerCase().replace(reg, "");
@@ -76,3 +107,22 @@ function palindrome(params) {
   return console.log(`It is a palindrome!`);
 }
 palindrome(phraseToCheck);
+
+// version 2
+function isPalidromeOrNot(params) {
+  let reg = /[\W_]/g;
+  let check = params.split(" ").join("").toLowerCase().replace(reg, "");
+  let reversed = "";
+
+  for (let i = check.length - 1; i >= 0; i--) {
+    reversed += check[i];
+  }
+
+  if (check === reversed) {
+    console.log(`It is a palindrome!`);
+  } else {
+    console.log(`It is not a palindrome!`);
+  }
+}
+
+isPalidromeOrNot(phraseToCheck);
